@@ -34,7 +34,14 @@ var score = 0;
 var questioncount = 1;
 var questionPage = 0;
 
-var highScorePage = document.querySelector("#button")
+var inputInitial = document.querySelector("initials");
+var scoreBoard = document.querySelector("#submit-page");
+var clearBtn = document.querySelector("#clear-btn");
+var backBtn = document.querySelector("#back-btn");
+var checkScore = document.querySelector("#check-score");
+var scoreRecord = document.querySelector("#score-record");
+var submitBtn = document.querySelector("#submit-btn");
+var highScorePage = document.querySelector("#highscore-page");
 var timer = document.querySelector("#timer");
 var startTimer = document.querySelector("#StartQuiz");
 var Quiz = document.querySelector("#Quiz");
@@ -124,7 +131,7 @@ function done() {
 
     //create paragraph
     var paragraph = document.createElement("p");
-    paragraph.setAttribute("paragraph");
+    paragraph.setAttribute("id", "paragraph");
 
     Quiz.appendChild(paragraph);
 
@@ -136,6 +143,4 @@ function done() {
         paragraph.textContent = "your final time is " + timeLeft;
 
         Quiz.appendChild(paragraph2);
-    }
-
-}
+    }}
