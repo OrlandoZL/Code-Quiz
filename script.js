@@ -40,18 +40,18 @@ var startTimer = document.querySelector("#StartQuiz");
 var Quiz = document.querySelector("#Quiz");
 //variables that declare time
 var timeLeft = 60;
-var holdTIme = 0;
+var holdTime = 0;
 var penalty = 10;
 //eventlistener for timer
 startTimer.addEventListener("click", function (){
-    if (holdTIme === 0) {
+    if (holdTime === 0) {
         holdTime = setInterval(function(){
             timeLeft--;
             timer.textContent = "Time: " + timeLeft;
 
             if (timeLeft <= 0) {
-                clearInterval(holdTIme)
-                document();
+                clearInterval(holdTime)
+                done();
                 timer.textContent = "Time is over!";
 
             }
@@ -86,7 +86,7 @@ function compare (event) {
     if (check.matches("li")) {
         var createDiv = document.createElement("div");
         createDiv.setAttribute("createDiv");
-        if (check.textContent === questions[questionPage].answer) {
+        if (check.textContent == questions[questionPage].answer) {
             score++;
             createDiv.textContent = "You're answer is correct, " + questions[questionPage].answer;
         }
@@ -96,4 +96,91 @@ function compare (event) {
             createDiv.textContent = "Incorrect answer! Correct answer is " + questions[questionPage].answer;
         }
     }
+    questionPage++;
+
+    if (questionPage >= questions.length) {
+        //shows how you did on quiz
+        done();
+        createDiv.textContent = "You finished the quiz!" + " " + "Your score is " + score + "/" + questions.length;
+    }
+
+    else {
+
+        render(questionPage);
+    }
+
+    Quiz.appendChild(createDiv);
+}
+function done() {
+    questionPage.innerHTML = "";
+    timer.innerHTML = "";
+
+    //creates heading element
+    var heading = document.createElement("h1");
+    heading.setAttribute("heading");
+    create.textContent = "Finished!"
+
+    questionPage.appendChild(heading);
+
+    //create paragraph
+    var paragraph = document.createElement("p");
+    paragraph.setAttribute("paragraph");
+
+    questionPage.appendChild(paragraph);
+
+    //gathers remaining time
+    if (timeLeft >= 0) {
+        var timeleftover = timeLeft;
+        var paragraph2 = document.createElement("p");
+        clearInterval(holdTime);
+        paragraph.textContent = "your final time is " + timeLeft;
+
+        questionPage.appendChild(paragraph2);
+    }
+    //submit button
+    var submit = document.createElement("button");
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("id", "submitbtn");
+    submit.textContent = "submit";
+
+    questionPage.appendChild(submit);
+
+    var label = document.createElement("label");
+    label.setAttribute("id", "newLabel");
+    label.textContent = "initials";
+
+    questionPage.appendChild(label);
+
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("id", "initials");
+    input.textContent = "";
+
+    questionPage.appendChild(input);
+
+submit.addEventListener("click", function(){
+    var initials = input.value;
+
+    if (initials === null) {
+        console.log("enter initials");
+    }
+    else {
+    var lastScore = {
+    initials: initials,
+    score: timeLeft
+        }
+     console.log(lastScore);
+     var scores = localStorage.getItem("scores");
+    if(scores === null) {
+        scores= [];
+    }
+    //puts scores together
+    else {
+        scores = JSON.parse(scores);
+    }
+    scores.push(scores);
+    var newScore = JSON.stringify(scores);
+    }
+})
+
 }
