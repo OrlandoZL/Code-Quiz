@@ -34,14 +34,8 @@ var score = 0;
 var questioncount = 1;
 var questionPage = 0;
 
-var inputInitial = document.querySelector("initials");
-var scoreBoard = document.querySelector("#submit-page");
-var clearBtn = document.querySelector("#clear-btn");
-var backBtn = document.querySelector("#back-btn");
-var checkScore = document.querySelector("#check-score");
-var scoreRecord = document.querySelector("#score-record");
+
 var submitBtn = document.querySelector("#submit-btn");
-var highScorePage = document.querySelector("#highscore-page");
 var timer = document.querySelector("#timer");
 var startTimer = document.querySelector("#StartQuiz");
 var Quiz = document.querySelector("#Quiz");
