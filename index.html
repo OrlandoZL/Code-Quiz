@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
 </head>
-<body>
     <header>
         <div class="header">
             <div>
@@ -15,13 +14,25 @@
             <div id="timer">
             </div>
         </header>
+        <body>
             <div id="Quiz">
                 <h1>Coding Quiz</h1>
                 <p>Try to answer the following questions before the time limit runs out. Every inccorect answer takes 10 seconds off the timer.</p>
-                <ul id="QuizChoices"></ul>
+                <ul id="ulCreate"></ul>
                 <button id="StartQuiz">Start Quiz</button>
             </div>
         </div>
+        <section id="highscore-page">
+            <div>
+                <h2>High Score Leaderboard</h2>
+                <div id="score-record">
+                    <p>Your Record</p>
+                </div>
+                <div>
+                    <button class="button" id="back-btn">Back</button>
+                    <button class="button" id="clear-btn">Clear Scores</button>
+            </div>
+        </section>
 <script src="script.js"></script>
 </body>
 </html>
