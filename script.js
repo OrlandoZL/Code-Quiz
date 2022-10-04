@@ -1,5 +1,5 @@
 //object that has an array of questions
-var question = [
+var questions = [
     {
         question: "How are arrays enclosed?",
         choices: ["curly brackets", "parenthesis", "quotes", "brackets"],
@@ -26,6 +26,9 @@ var question = [
         answer: "console.log"
     },
 ]
+//creates unordered list
+var ulcreate = document.createElement("ul");
+
 //declares variables such as scores
 var score = 0;
 var questioncount = 1;
@@ -39,7 +42,7 @@ var Quiz = document.querySelector("#Quiz");
 var timeLeft = 60;
 var holdTIme = 0;
 var penalty = 10;
-
+//eventlistener for timer
 startTimer.addEventListener("click", function (){
     if (holdTIme === 0) {
         holdTime = setInterval(function(){
@@ -56,7 +59,41 @@ startTimer.addEventListener("click", function (){
     }
     render(questionPage);
 });
-
+//renders the new questions to the page
 function render(questionPage) {
+    Quiz.innerHTML = "";
+    ulcreate.innerHTML = "";
+    //loop for question and choices
+    for(var i = 0; i < question.length; i++) {
+        var userQuestion = questions[questionPage].question;
+        var userChoice = questions[questionPage].choices;
+        Quiz.textContent = userQuestion;
+    }
+    //creates new list
+    userChoice.forEach(function(newList){
+        var quesitonItem = document.createElement("li");
+        quesitonItem.textContent = newList;
+        Quiz.appendChild(ulcreate);
+        ulcreate.appendChild(listItem);
+        quesitonItem.addEventListener("click", (compare));
 
+    })
+}
+//an event to determine whether the answer is correct or not
+function compare (event) {
+    var check = event.target;
+
+    if (check.matches("li")) {
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("createDiv");
+        if (check.textContent === questions[questionPage].answer) {
+            score++;
+            createDiv.textContent = "You're answer is correct, " + questions[questionPage].answer;
+        }
+        else {
+            //takes 10 seconds of the clock as a penalty
+            timeLeft = timeLeft - penalty;
+            createDiv.textContent = "Incorrect answer! Correct answer is " + questions[questionPage].answer;
+        }
+    }
 }
